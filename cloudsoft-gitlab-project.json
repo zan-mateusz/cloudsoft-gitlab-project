@@ -1,0 +1,92 @@
+{
+    "typeName": "Cloudsoft::GitLab::Project",
+    "description": "Gitlab Project Management",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+    "definitions": {
+        "Project": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string",
+                    "description": "Name of the project to be created.",
+                    "minLength": 1,
+                    "maxLength": 128
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "Description of the project to be created."
+                }
+            },
+            "required": [
+                "Name"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "Name": {
+            "description": "The name of the project",
+            "type": "string",
+            "maxLength": 64
+        },
+        "Server": {
+            "description": "GitLab Server address",
+            "type": "string",
+            "maxLength": 64
+        },
+        "UserID": {
+            "description": "User ID",
+            "type": "string",
+            "maxLength": 64
+        },
+        "UserPassword": {
+            "description": "Password",
+            "type": "string",
+            "maxLength": 64
+        },
+        "Token": {
+            "description": "Authentication Token",
+            "type": "string",
+            "maxLength": 64
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "Name"
+    ],
+    "readOnlyProperties": [
+        "/properties/UserID",
+        "/properties/UserPassword",
+        "/properties/Server"
+    ],
+    "primaryIdentifier": [
+        "/properties/Name"
+    ],
+    "handlers": {
+        "create": {
+            "permissions": [
+                "gitlab:CreateProject"
+            ]
+        },
+        "read": {
+            "permissions": [
+                "gitlab:DescribeProject"
+            ]
+        },
+        "update": {
+            "permissions": [
+                "gitlab:UpdateProject"
+            ]
+        },
+        "delete": {
+            "permissions": [
+                "gitlab:DeleteProject"
+            ]
+        },
+        "list": {
+            "permissions": [
+                "gitlab:ListProjects"
+            ]
+        }
+    }
+}
